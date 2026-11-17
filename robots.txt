@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /Sculpted-You/checkout/
+Disallow: /Sculpted-You/order/
+
+Sitemap: https://obsidianstudiodesigns.github.io/Sculpted-You/sitemap.xml
