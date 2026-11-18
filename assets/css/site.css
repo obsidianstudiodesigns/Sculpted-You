@@ -170,7 +170,11 @@ p { margin: 0 0 1em; }
   .panels:not(:hover):not(:focus-within) .panel:first-child :is(.panel-tag, .panel-count),
   .panel:hover :is(.panel-tag, .panel-count), .panel:focus-visible :is(.panel-tag, .panel-count) { opacity: 1; transform: none; transition-delay: .2s; }
   .panel:hover .panel-img { transform: scale(1.04); }
-  .panel-name { writing-mode: vertical-rl; transform: rotate(180deg); }
+  .panel-name { writing-mode: vertical-rl; transform: rotate(180deg); text-shadow: 0 1px 14px rgba(15,14,12,.9); }
+  /* collapsed panels sit dimmed so the vertical name reads over bright vial glass; the open one lifts */
+  .panel-shade::after { content: ""; position: absolute; inset: 0; background: rgba(15,14,12,.6); transition: opacity .8s var(--ease); }
+  .panels:not(:hover):not(:focus-within) .panel:first-child .panel-shade::after,
+  .panel:hover .panel-shade::after, .panel:focus-visible .panel-shade::after { opacity: 0; }
   .panels:not(:hover):not(:focus-within) .panel:first-child .panel-name,
   .panel:hover .panel-name, .panel:focus-visible .panel-name { writing-mode: horizontal-tb; transform: none; }
 }

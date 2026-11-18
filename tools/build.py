@@ -1097,22 +1097,22 @@ def not_found():
 def products_js():
     data = {p["slug"]: {"name": p["name"], "strength": p["strength"], "price": p["price"],
                         "img": f"assets/img/products/{p['slug']}-400.webp", "url": f"product/{p['slug']}/"} for p in PRODUCTS}
-    (ROOT / "assets/js/products.js").write_text("window.SY_PRODUCTS=" + json.dumps(data, separators=(",", ":")) + ";\n", encoding="utf8")
+    (ROOT / "assets/js/products.js").write_text("window.SY_PRODUCTS=" + json.dumps(data, separators=(",", ":")) + ";\n", encoding="utf8", newline=chr(10))
 
 
 def seo_files():
     today = date.today().isoformat()
     urls = "".join(f"<url><loc>{BASE}{p}</loc><lastmod>{today}</lastmod><priority>{pr}</priority></url>\n" for p, pr in pages)
-    (ROOT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n', encoding="utf8")
-    (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /Sculpted-You/checkout/\nDisallow: /Sculpted-You/order/\n\nSitemap: {BASE}sitemap.xml\n", encoding="utf8")
+    (ROOT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n', encoding="utf8", newline=chr(10))
+    (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /Sculpted-You/checkout/\nDisallow: /Sculpted-You/order/\n\nSitemap: {BASE}sitemap.xml\n", encoding="utf8", newline=chr(10))
     manifest = {"name": NAME, "short_name": NAME, "description": "Premium peptides, couriered across South Africa.",
                 "start_url": "/Sculpted-You/", "scope": "/Sculpted-You/", "display": "standalone",
                 "background_color": "#13110f", "theme_color": "#13110f",
                 "icons": [{"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
                           {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
                           {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}]}
-    (ROOT / "site.webmanifest").write_text(json.dumps(manifest, indent=2), encoding="utf8")
-    (ROOT / ".nojekyll").write_text("", encoding="utf8")
+    (ROOT / "site.webmanifest").write_text(json.dumps(manifest, indent=2), encoding="utf8", newline=chr(10))
+    (ROOT / ".nojekyll").write_text("", encoding="utf8", newline=chr(10))
 
 
 VERSION = date.today().strftime("%Y%m%d") + "b"
